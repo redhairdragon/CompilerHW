@@ -54,10 +54,3 @@ added in the final grading.
 NOTE: The current pregrade script uses bash, so you might have some
 problems using Windows. 
 
-### JavaCC and JTB
-
-Some of the excises will use JavaCC and JTB, to use them with the gradle 
-script follow the instructions in `src/parse/java/README.mkd`.
-
-
-

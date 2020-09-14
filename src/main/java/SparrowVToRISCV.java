@@ -3,8 +3,19 @@ import cs132.IR.sparrowv.visitor.*;
 import cs132.IR.token.Identifier;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class SparrowVToRISCV extends DepthFirst {
+
+    private int find_index(FunctionDecl fd, String id){
+        List<Identifier> params = fd.formalParameters;
+        for (Identifier i:params) {
+            if(i.toString().equals(id)){
+                return params.indexOf(i);
+            }
+        }
+        return -1;
+    }
 
     public HashMap <String, HashMap<String, Integer>> envTable;
 
@@ -119,7 +130,7 @@ public class SparrowVToRISCV extends DepthFirst {
         if (context.containsKey(ret.toString())){
             text_seg += "  lw a0, " + context.get(ret.toString()) + "(fp)" + " \t\t\t\t# Load return value to a0\n";
         } else {
-            int index = block.parent.index_arg(ret.toString());
+            int index = find_index(block.parent,ret.toString());
             assert index != -1; // otherwise, this is a undefined id
             int offset = index * 4;
             text_seg += "  lw a0, " + offset + "(fp)" + " \t\t\t\t# Load return value to a0\n";
@@ -187,7 +198,7 @@ public class SparrowVToRISCV extends DepthFirst {
             text_seg += "  sw " + mov.rhs.toString() + ", " +
                     envTable.get(mov.parent.parent.functionName.name).get(id) + "(fp)" + "\n";
         } else {
-            int index = mov.parent.parent.index_arg(id);
+            int index = find_index(mov.parent.parent,id);
             assert index != -1; // otherwise, this is a undefined id
             int offset = index * 4;
             text_seg += "  sw " + mov.rhs.toString() + ", " + offset + "(fp)" + "\n";
@@ -201,7 +212,7 @@ public class SparrowVToRISCV extends DepthFirst {
             text_seg += "  lw " + mov.lhs.toString() + ", " +
                     envTable.get(mov.parent.parent.functionName.name).get(id) + "(fp)" + "\n";
         } else {
-            int index = mov.parent.parent.index_arg(id);
+            int index = find_index(mov.parent.parent,id);
             assert index != -1; // otherwise, this is a undefined id
             int offset = index * 4;
             text_seg += "  lw " + mov.lhs.toString() + ", " + offset + "(fp)" + "\n";
@@ -264,7 +275,7 @@ public class SparrowVToRISCV extends DepthFirst {
             if (context.containsKey(id)){
                 text_seg += "  lw t6, " + context.get(id) + "(fp)" + " \t\t\t\t# Load value to t6\n";
             } else {
-                int index = call.parent.parent.index_arg(id);
+                int index = find_index(call.parent.parent, id);
                 assert index != -1; // otherwise, this is a undefined id
                 int offset = index * 4;
                 text_seg += "  lw t6, " + offset + "(fp)" + " \t\t\t\t# Load value to t6\n";
