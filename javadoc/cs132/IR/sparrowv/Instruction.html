@@ -17,8 +17,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -162,22 +162,31 @@ extends java.lang.Object</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>&lt;A&gt;&nbsp;void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.ArgVisitor-A-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/ArgVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgVisitor</a>&lt;A&gt;&nbsp;v,
+<td class="colFirst"><code>abstract &lt;A,R&gt;&nbsp;R</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-A-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/ArgRetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgRetVisitor</a>&lt;A,R&gt;&nbsp;v,
       A&nbsp;arg)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.Visitor-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/Visitor.html" title="interface in cs132.IR.sparrowv.visitor">Visitor</a>&nbsp;v)</code>&nbsp;</td>
+<td class="colFirst"><code>abstract &lt;A&gt;&nbsp;void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.ArgVisitor-A-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/ArgVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgVisitor</a>&lt;A&gt;&nbsp;v,
+      A&nbsp;arg)</code>&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code>abstract &lt;R&gt;&nbsp;R</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.RetVisitor-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/RetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">RetVisitor</a>&lt;R&gt;&nbsp;v)</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>abstract void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.Visitor-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/Visitor.html" title="interface in cs132.IR.sparrowv.visitor">Visitor</a>&nbsp;v)</code>&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>abstract java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Instruction.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
@@ -242,7 +251,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>accept</h4>
-<pre>public&nbsp;void&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/Visitor.html" title="interface in cs132.IR.sparrowv.visitor">Visitor</a>&nbsp;v)</pre>
+<pre>public abstract&nbsp;void&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/Visitor.html" title="interface in cs132.IR.sparrowv.visitor">Visitor</a>&nbsp;v)</pre>
 </li>
 </ul>
 <a name="accept-cs132.IR.sparrowv.visitor.ArgVisitor-java.lang.Object-">
@@ -253,8 +262,29 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>accept</h4>
-<pre>public&nbsp;&lt;A&gt;&nbsp;void&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/ArgVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgVisitor</a>&lt;A&gt;&nbsp;v,
-                       A&nbsp;arg)</pre>
+<pre>public abstract&nbsp;&lt;A&gt;&nbsp;void&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/ArgVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgVisitor</a>&lt;A&gt;&nbsp;v,
+                                A&nbsp;arg)</pre>
+</li>
+</ul>
+<a name="accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-java.lang.Object-">
+<!--   -->
+</a><a name="accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-A-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>accept</h4>
+<pre>public abstract&nbsp;&lt;A,R&gt;&nbsp;R&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/ArgRetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgRetVisitor</a>&lt;A,R&gt;&nbsp;v,
+                               A&nbsp;arg)</pre>
+</li>
+</ul>
+<a name="accept-cs132.IR.sparrowv.visitor.RetVisitor-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>accept</h4>
+<pre>public abstract&nbsp;&lt;R&gt;&nbsp;R&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/RetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">RetVisitor</a>&lt;R&gt;&nbsp;v)</pre>
 </li>
 </ul>
 <a name="toString--">
@@ -263,7 +293,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
+<pre>public abstract&nbsp;java.lang.String&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>

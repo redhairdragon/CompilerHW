@@ -5,7 +5,7 @@ requirements:
 
 1.  It MUST have your UID as name; example: `123456789.tar`.
 
-2.  It MUST contain ONLY and ALL the source code and used to compile
+2.  It MUST contain **ONLY** and **ALL** the source code and used to compile
     your program:
     
         $ tar -vtf 123456789.tar
@@ -36,7 +36,7 @@ code in `src/main/java`, and any unit tests you want in `src/test/java`.
 1.  First of download and install 
     [gradle](https://docs.gradle.org/current/userguide/installation.html).
 
-2.  change `MY_UID` to your UID in `gradle.properties`, and the 
+2.  change `myUID` to your UID in `gradle.properties`, and the 
     `homework` variable to the current homework.
 
 3.  build, and unit-test the code using `gradle build`.

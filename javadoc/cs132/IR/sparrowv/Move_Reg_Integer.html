@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -181,15 +181,24 @@ extends <a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>&lt;A,R&gt;&nbsp;R</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Move_Reg_Integer.html#accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-A-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/ArgRetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgRetVisitor</a>&lt;A,R&gt;&nbsp;v,
+      A&nbsp;arg)</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>&lt;A&gt;&nbsp;void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Move_Reg_Integer.html#accept-cs132.IR.sparrowv.visitor.ArgVisitor-A-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/ArgVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgVisitor</a>&lt;A&gt;&nbsp;v,
       A&nbsp;arg)</code>&nbsp;</td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>&lt;R&gt;&nbsp;R</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Move_Reg_Integer.html#accept-cs132.IR.sparrowv.visitor.RetVisitor-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/RetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">RetVisitor</a>&lt;R&gt;&nbsp;v)</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Move_Reg_Integer.html#accept-cs132.IR.sparrowv.visitor.Visitor-">accept</a></span>(<a href="../../../cs132/IR/sparrowv/visitor/Visitor.html" title="interface in cs132.IR.sparrowv.visitor">Visitor</a>&nbsp;v)</code>&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../cs132/IR/sparrowv/Move_Reg_Integer.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -267,7 +276,7 @@ extends <a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs
 <h4>accept</h4>
 <pre>public&nbsp;void&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/Visitor.html" title="interface in cs132.IR.sparrowv.visitor">Visitor</a>&nbsp;v)</pre>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.Visitor-">accept</a></code>&nbsp;in class&nbsp;<code><a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs132.IR.sparrowv">Instruction</a></code></dd>
 </dl>
 </li>
@@ -283,8 +292,37 @@ extends <a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs
 <pre>public&nbsp;&lt;A&gt;&nbsp;void&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/ArgVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgVisitor</a>&lt;A&gt;&nbsp;v,
                        A&nbsp;arg)</pre>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.ArgVisitor-A-">accept</a></code>&nbsp;in class&nbsp;<code><a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs132.IR.sparrowv">Instruction</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-java.lang.Object-">
+<!--   -->
+</a><a name="accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-A-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>accept</h4>
+<pre>public&nbsp;&lt;A,R&gt;&nbsp;R&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/ArgRetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">ArgRetVisitor</a>&lt;A,R&gt;&nbsp;v,
+                      A&nbsp;arg)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.ArgRetVisitor-A-">accept</a></code>&nbsp;in class&nbsp;<code><a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs132.IR.sparrowv">Instruction</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="accept-cs132.IR.sparrowv.visitor.RetVisitor-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>accept</h4>
+<pre>public&nbsp;&lt;R&gt;&nbsp;R&nbsp;accept(<a href="../../../cs132/IR/sparrowv/visitor/RetVisitor.html" title="interface in cs132.IR.sparrowv.visitor">RetVisitor</a>&lt;R&gt;&nbsp;v)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../cs132/IR/sparrowv/Instruction.html#accept-cs132.IR.sparrowv.visitor.RetVisitor-">accept</a></code>&nbsp;in class&nbsp;<code><a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs132.IR.sparrowv">Instruction</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -296,7 +334,7 @@ extends <a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs
 <h4>toString</h4>
 <pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../cs132/IR/sparrowv/Instruction.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../../cs132/IR/sparrowv/Instruction.html" title="class in cs132.IR.sparrowv">Instruction</a></code></dd>
 </dl>
 </li>
