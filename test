@@ -1,0 +1,21 @@
+class Main {
+	public static void main(String[] a){
+	}
+}
+
+class BBS{
+    int size ;
+}
+
+class BBC extends BBS{
+    int size ;
+}
+class BBD extends BBS{
+    int size ;
+}
+class BBe extends BBC{
+    int size ;
+}
+class BBz extends NA{
+    int size ;
+}
