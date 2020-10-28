@@ -1,13 +1,26 @@
 package Models;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Primitives {
-    static final HashSet<Type> primitives = new HashSet<>(
-            Arrays.asList(new Type("boolean"), new Type("int"), new Type("int[]")));
+    static final HashMap<Integer, String> coding = new HashMap<Integer, String>() {
+        {
+            put(0, "int[]");
+            put(1, "boolean");
+            put(2, "int");
+        }
+    };
 
     public static boolean isPrimitive(Type type) {
-        return primitives.contains(type);
+        return coding.containsValue(type.getName());
     }
+
+    public static boolean isPrimitive(int code) {
+        return coding.containsKey(code);
+    }
+
+    public static Type getCodeName(int code) {
+        return new Type(coding.get(code));
+    }
+
 }

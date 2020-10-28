@@ -16,6 +16,7 @@ public class Typecheck {
             tc.execute();
         } catch (ParseException e) {
             System.out.println("Parse Failed.");
+            return;
         } catch (Error e) {
             System.out.println(e);
             printFailure();

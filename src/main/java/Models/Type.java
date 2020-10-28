@@ -7,11 +7,19 @@ public class Type {
         this.name = name;
     }
 
+    public boolean isPrimitive() {
+        return Primitives.isPrimitive(this);
+    }
+
     public int hashCode() {
         return name.hashCode();
     }
 
     public boolean equals(Type other) {
         return name.equals(other.name);
+    }
+
+    public String getName() {
+        return name;
     }
 }

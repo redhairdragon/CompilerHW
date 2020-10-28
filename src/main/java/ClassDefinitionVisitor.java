@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Optional;
@@ -6,17 +5,18 @@ import java.util.Optional;
 import cs132.minijava.syntaxtree.*;
 import cs132.minijava.visitor.*;
 import Errors.*;
+import Helpers.*;
 
 // Handles duplicate class name, inexisted parent
 public class ClassDefinitionVisitor extends DepthFirstVisitor {
     HashSet<String> classes;
     HashSet<String> parents;
-    HashMap<String, HashSet<String>> p2c; // parent to children relation
+    HashMap<String, String> c2p; // parent to children relation
 
     public ClassDefinitionVisitor() {
         classes = new HashSet<>();
         parents = new HashSet<>();
-        p2c = new HashMap<>();
+        c2p = new HashMap<>();
 
         classes.add("boolean");
         classes.add("int");
@@ -52,32 +52,29 @@ public class ClassDefinitionVisitor extends DepthFirstVisitor {
         parents.add(parentName);
 
         // Add to inheritance tree
-        if (p2c.containsKey(parentName))
-            p2c.get(parentName).add(className);
+        if (c2p.containsKey(className))
+            throw new DoubleInheritance(className);
         else
-            p2c.put(parentName, new HashSet<>(Arrays.asList(className)));
+            c2p.put(className, parentName);
     }
 
     public void checkParentsExistence() throws ParentNotExistedError {
         Optional<String> result = parents.stream().filter(p -> !classes.contains(p)).findFirst();
-        Helpers.debugPrint(parents.toString());
+        Helpers.debugPrint("Parents: " + parents.toString());
         if (result.isPresent())
             throw new ParentNotExistedError(result.get());
     }
 
-    // Check if t1<= t2
-    public boolean isSubType(String t1, String t2) {
-        if (t1.equals(t2))
-            return true;
-        if (!p2c.containsKey(t2))
-            return false;
-        if (p2c.get(t2).contains(t1))
-            return true;
-        // Another DFS required here
-        return false;
+    public void checkMainExistence() throws MainFunctionNotFoundError {
+        if (!classes.contains("Main"))
+            throw new MainFunctionNotFoundError();
     }
 
     public HashSet<String> getClasses() {
         return classes;
+    }
+
+    public HashMap<String, String> getChildToParent() {
+        return c2p;
     }
 }

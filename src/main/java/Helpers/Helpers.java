@@ -1,0 +1,56 @@
+package Helpers;
+
+import java.util.Vector;
+
+import Models.Primitives;
+import cs132.minijava.syntaxtree.*;
+
+public class Helpers {
+    public static String classname(MainClass n) {
+        return n.f1.f0.tokenImage;
+    }
+
+    public static String classname(ClassDeclaration n) {
+        return n.f1.f0.tokenImage;
+    }
+
+    public static String classname(ClassExtendsDeclaration n) {
+        return n.f1.f0.tokenImage;
+    }
+
+    public static String parentname(ClassExtendsDeclaration n) {
+        return n.f3.f0.tokenImage;
+    }
+
+    public static String methodname(MethodDeclaration n) {
+        return n.f2.f0.tokenImage;
+    }
+
+    public static void debugPrint(Object s) {
+        System.out.println(s.toString());
+    }
+
+    public static Vector<Node> variableDeclarations(ClassDeclaration n) {
+        return n.f3.nodes;
+    }
+
+    public static Vector<Node> variableDeclarations(ClassExtendsDeclaration n) {
+        return n.f5.nodes;
+    }
+
+    public static String varname(VarDeclaration n) {
+        return n.f1.f0.tokenImage;
+    }
+
+    public static Models.Type getType(VarDeclaration n) {
+        int typecode = n.f0.f0.which;
+        Models.Type type;
+        if (Primitives.isPrimitive(typecode)) {
+            type = Primitives.getCodeName(typecode);
+        } else { // Not a primative type
+            Identifier nonPrimitiveNode = (Identifier) n.f0.f0.choice;
+            type = new Models.Type(nonPrimitiveNode.f0.tokenImage);
+        }
+        return type;
+    }
+}
