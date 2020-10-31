@@ -13,6 +13,7 @@ public class Typechecker {
 
     ClassDefinitionVisitor classDefinitionVisitor = new ClassDefinitionVisitor();
     ClassMemberVisitor classMemberVisitor;
+    ClassMethodVisitor classMethodVisitor;
 
     public Typechecker(Node root) {
         this.root = root;
@@ -23,6 +24,8 @@ public class Typechecker {
         initClasses();
         classMemberVisitor = new ClassMemberVisitor(classes);
         root.accept(classMemberVisitor, null);
+        classMethodVisitor = new ClassMethodVisitor(classes);
+        root.accept(classMethodVisitor, null);
         return;
     }
 

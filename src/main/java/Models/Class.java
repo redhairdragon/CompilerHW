@@ -1,8 +1,9 @@
 package Models;
 
 import java.util.HashMap;
+
+import Errors.DuplicatedMethodNameError;
 import Errors.DuplicatedMemberVariableNameError;
-import Helpers.*;
 
 public class Class {
     public String name;
@@ -28,5 +29,13 @@ public class Class {
 
     public void setParent(Class parent) {
         this.parent = parent;
+    }
+
+    public void addMethod(Type returnType, String methodName, HashMap<String, Models.Type> args)
+            throws DuplicatedMethodNameError {
+        if (methods.containsKey(methodName))
+            throw new DuplicatedMethodNameError(methodName, name);
+        Method method = new Method(methodName, returnType, args, this);
+        methods.put(method.getName(), method);
     }
 }

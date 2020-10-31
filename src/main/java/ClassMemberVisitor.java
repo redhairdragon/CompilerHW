@@ -20,7 +20,7 @@ public class ClassMemberVisitor extends GJVoidDepthFirst<Class> {
     @Override
     public void visit(VarDeclaration n, Class c) {
         String varname = Helpers.varname(n);
-        Models.Type type = Helpers.getType(n);
+        Models.Type type = Helpers.getType(n.f0);
 
         if (!type.isPrimitive())
             if (!classes.containsKey(type.getName()))
@@ -47,7 +47,7 @@ public class ClassMemberVisitor extends GJVoidDepthFirst<Class> {
         String className = Helpers.classname(n);
         Vector<Node> vd = Helpers.variableDeclarations(n);
 
-        Helpers.debugPrint("Loading " + n.f5.size() + " Member Variables for Class: " + className);
+        Helpers.debugPrint("Loading " + n.f5.size() + " Member Variables for Extended Class: " + className);
 
         for (Node var : vd) {
             var.accept(this, classes.get(className));

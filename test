@@ -3,19 +3,35 @@ class Main {
 	}
 }
 
-class BBS{
+class A{
+    int size ;
+    boolean a;
+    int[] c;
+    Main m;
+    public int hi(int a,B b){
+        return 1;
+    }
+}
+
+class B extends A{
+    int size ;
+    public boolean hi(int a,B b){
+        return 1;
+    }
+    public boolean hi(int a,B b){
+        return 1;
+    }
+}
+class C extends A{
+    int size ;
+}
+class D extends C{
+    int size ;
+}
+class E extends D{
     int size ;
 }
 
-class BBC extends BBS{
-    int size ;
-}
-class BBD extends BBS{
-    int size ;
-}
-class BBe extends BBC{
-    int size ;
-}
-class BBz extends NA{
-    int size ;
+class F extends D{
+    A size ;
 }
