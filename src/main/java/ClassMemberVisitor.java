@@ -17,6 +17,10 @@ public class ClassMemberVisitor extends GJVoidDepthFirst<Class> {
         this.classes = classes;
     }
 
+    public void execute(Node root) {
+        root.accept(this, null);
+    }
+
     @Override
     public void visit(VarDeclaration n, Class c) {
         String varname = Helpers.varname(n);

@@ -11,7 +11,7 @@ public class Typechecker {
     HashMap<String, Class> classes;
     HashMap<String, String> childToParent;
 
-    ClassDefinitionVisitor classDefinitionVisitor = new ClassDefinitionVisitor();
+    ClassDefinitionVisitor classDefinitionVisitor;
     ClassMemberVisitor classMemberVisitor;
     ClassMethodVisitor classMethodVisitor;
 
@@ -20,20 +20,14 @@ public class Typechecker {
     }
 
     public void execute() throws ExistedClassDefinitionError, ParentNotExistedError, MainFunctionNotFoundError {
-        checkClassDefinition();
+        classDefinitionVisitor = new ClassDefinitionVisitor();
+        classDefinitionVisitor.execute(root);
         initClasses();
         classMemberVisitor = new ClassMemberVisitor(classes);
-        root.accept(classMemberVisitor, null);
+        classMemberVisitor.execute(root);
         classMethodVisitor = new ClassMethodVisitor(classes);
-        root.accept(classMethodVisitor, null);
+        classMethodVisitor.execute(root);
         return;
-    }
-
-    private void checkClassDefinition()
-            throws ExistedClassDefinitionError, ParentNotExistedError, MainFunctionNotFoundError {
-        root.accept(classDefinitionVisitor);
-        classDefinitionVisitor.checkMainExistence();
-        classDefinitionVisitor.checkParentsExistence();
     }
 
     private void initClasses() {

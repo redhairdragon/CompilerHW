@@ -3,10 +3,10 @@ package Models;
 import java.util.HashMap;
 
 public class Method {
-    String name;
-    Class belongto;
-    Type returnType;
-    HashMap<String, Type> arguments;
+    public String name;
+    public Class belongto;
+    public Type returnType;
+    public HashMap<String, Type> arguments;
 
     public Method(String name, Type returnType, HashMap<String, Type> arguments, Class belongto) {
         this.name = name;

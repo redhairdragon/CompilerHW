@@ -22,6 +22,13 @@ public class ClassDefinitionVisitor extends DepthFirstVisitor {
         classes.add("int");
     }
 
+    public void execute(Node root)
+            throws ExistedClassDefinitionError, ParentNotExistedError, MainFunctionNotFoundError {
+        root.accept(this);
+        this.checkMainExistence();
+        this.checkParentsExistence();
+    }
+
     @Override
     public void visit(MainClass n) throws ExistedClassDefinitionError {
         String className = Helpers.classname(n);

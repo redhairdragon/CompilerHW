@@ -3,6 +3,7 @@ package Models;
 import java.util.HashMap;
 
 import Errors.DuplicatedMethodNameError;
+import Errors.MethodNotFoundError;
 import Errors.DuplicatedMemberVariableNameError;
 
 public class Class {
@@ -37,5 +38,26 @@ public class Class {
             throw new DuplicatedMethodNameError(methodName, name);
         Method method = new Method(methodName, returnType, args, this);
         methods.put(method.getName(), method);
+    }
+
+    public Type returnType(String methodName) throws MethodNotFoundError {
+        Method m = getMethod(methodName);
+        return m.returnType;
+    }
+
+    public HashMap<String, Type> args(String methodName) throws MethodNotFoundError {
+        Method m = getMethod(methodName);
+        return m.arguments;
+    }
+
+    // recursively look up method
+    private Method getMethod(String methodName) throws MethodNotFoundError {
+        Class currentClass = this;
+        while (currentClass != null) {
+            if (currentClass.methods.containsKey(methodName))
+                return currentClass.methods.get(methodName);
+            currentClass = currentClass.parent;
+        }
+        throw new MethodNotFoundError(methodName, name);
     }
 }

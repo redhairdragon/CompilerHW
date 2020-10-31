@@ -18,6 +18,10 @@ public class ClassMethodVisitor extends GJVoidDepthFirst<Class> {
         this.classes = classes;
     }
 
+    public void execute(Node root) {
+        root.accept(this, null);
+    }
+
     @Override
     public void visit(ClassDeclaration n, Class c) {
         String className = Helpers.classname(n);
