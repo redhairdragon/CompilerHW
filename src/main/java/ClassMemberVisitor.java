@@ -22,7 +22,7 @@ public class ClassMemberVisitor extends GJVoidDepthFirst<Class> {
     }
 
     @Override
-    public void visit(VarDeclaration n, Class c) {
+    public void visit(VarDeclaration n, Class c) throws DuplicatedMemberVariableNameError {
         String varname = Helpers.varname(n);
         Models.Type type = Helpers.getType(n.f0);
 

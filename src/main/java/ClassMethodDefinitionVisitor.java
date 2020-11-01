@@ -8,18 +8,21 @@ import cs132.minijava.syntaxtree.ClassDeclaration;
 import cs132.minijava.syntaxtree.ClassExtendsDeclaration;
 import cs132.minijava.syntaxtree.MethodDeclaration;
 import cs132.minijava.syntaxtree.Node;
-import cs132.minijava.visitor.GJVoidDepthFirst;
+import cs132.minijava.visitor.*;
 import Models.Class;
 
-public class ClassMethodVisitor extends GJVoidDepthFirst<Class> {
+//Load method args and check parent method type
+public class ClassMethodDefinitionVisitor extends GJVoidDepthFirst<Class> {
     HashMap<String, Class> classes;
 
-    public ClassMethodVisitor(HashMap<String, Class> classes) {
+    public ClassMethodDefinitionVisitor(HashMap<String, Class> classes) {
         this.classes = classes;
     }
 
     public void execute(Node root) {
         root.accept(this, null);
+        ParentMethodArgsChecker pmc = new ParentMethodArgsChecker(classes);
+        pmc.check(root);
     }
 
     @Override
@@ -56,11 +59,9 @@ public class ClassMethodVisitor extends GJVoidDepthFirst<Class> {
         MethodParamVisitor mpv = new MethodParamVisitor(c.getName(), methodName, classes, n);
         c.addMethod(returnType, methodName, mpv.getArgs());
 
-        Helpers.debugPrint(" Class: " + c.getName() + "\tMethod:\t" + methodName + "\tRType:\t" + returnType.getName());
-    }
+        Helpers.debugPrint("Class: " + c.getName() + "\tMethod:\t" + methodName + "\tRType:\t" + returnType.getName()
+                + "\nArgs:\t" + mpv.getArgs());
 
-    public void checkParentMethod() {
-        //
     }
 
 }

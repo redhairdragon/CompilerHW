@@ -29,7 +29,7 @@ public class MethodParamVisitor extends DepthFirstVisitor {
     public void visit(FormalParameter n) throws DuplicatedMethodArgumentName, UndefinedTypeError {
         Models.Type type = Helpers.getType(n.f0);
         String argname = Helpers.argname(n);
-        if (!args.containsKey(argname))
+        if (args.containsKey(argname))
             throw new DuplicatedMethodArgumentName(argname, methodname, classname);
         if (!type.isPrimitive() && !classes.containsKey(type.getName()))
             throw new UndefinedTypeError(type.getName());

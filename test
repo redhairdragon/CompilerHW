@@ -9,29 +9,23 @@ class A{
     int[] c;
     Main m;
     public int hi(int a,B b){
+        C d;
+        int var;
         return 1;
     }
 }
 
 class B extends A{
     int size ;
-    public boolean hi(int a,B b){
-        return 1;
-    }
-    public boolean hi(int a,B b){
-        return 1;
-    }
+    boolean a;
 }
 class C extends A{
     int size ;
-}
-class D extends C{
-    int size ;
-}
-class E extends D{
-    int size ;
-}
-
-class F extends D{
-    A size ;
+    boolean a;
+    public int CAHI(int a,C b){
+        A a;
+        boolean b;
+        return 1;
+    }
+   
 }

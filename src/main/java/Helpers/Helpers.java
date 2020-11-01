@@ -47,6 +47,18 @@ public class Helpers {
         return n.f6.nodes;
     }
 
+    public static Vector<Node> varDeclarations(MethodDeclaration n) {
+        return n.f7.nodes;
+    }
+
+    public static Vector<Node> statements(MethodDeclaration n) {
+        return n.f8.nodes;
+    }
+
+    public static Models.Type type(VarDeclaration n) {
+        return getType(n.f0);
+    }
+
     public static String varname(VarDeclaration n) {
         return n.f1.f0.tokenImage;
     }

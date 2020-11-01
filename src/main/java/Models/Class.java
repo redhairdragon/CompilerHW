@@ -9,13 +9,16 @@ import Errors.DuplicatedMemberVariableNameError;
 public class Class {
     public String name;
     public Class parent;
-    HashMap<String, Method> methods;
-    HashMap<String, Type> variables;
+    public HashMap<String, Method> methods = new HashMap<>();
+    public HashMap<String, Type> variables = new HashMap<String, Type>();
 
     public Class(String name) {
         this.name = name;
         this.parent = null;
-        this.variables = new HashMap<String, Type>();
+    }
+
+    public boolean hasParent() {
+        return parent != null;
     }
 
     public void addVariable(Type t, String varname) throws DuplicatedMemberVariableNameError {
