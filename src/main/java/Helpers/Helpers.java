@@ -30,7 +30,11 @@ public class Helpers {
     }
 
     public static void debugPrint(Object s) {
-        // System.out.println(s.toString());
+        System.out.println(s.toString());
+    }
+
+    public static Vector<Node> variableDeclarations(MainClass n) {
+        return n.f14.nodes;
     }
 
     public static Vector<Node> variableDeclarations(ClassDeclaration n) {

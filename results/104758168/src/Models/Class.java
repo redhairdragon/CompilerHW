@@ -12,6 +12,8 @@ public class Class {
     public HashMap<String, Method> methods = new HashMap<>();
     public HashMap<String, Type> variables = new HashMap<String, Type>();
 
+    public boolean isMain = false;
+
     public Class(String name) {
         this.name = name;
         this.parent = null;

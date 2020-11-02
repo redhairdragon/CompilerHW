@@ -118,7 +118,7 @@ public class ExpressionTypeResolver extends GJNoArguDepthFirst<Type> {
 
     @Override
     public Type visit(IntegerLiteral e) {
-        Helpers.debugPrint("Resolving IntegerLiteral: " + e);
+        Helpers.debugPrint("Resolving IntegerLiteral: " + e.f0.tokenImage);
         return new Type("int");
     }
 
@@ -213,7 +213,7 @@ public class ExpressionTypeResolver extends GJNoArguDepthFirst<Type> {
         if (c.variables.containsKey(var))
             return c.variables.get(var);
         Class parent = c.parent;
-        while (parent != null) {
+        while (parent != null && !parent.isMain) {
             if (parent.variables.containsKey(var))
                 return parent.variables.get(var);
             parent = parent.parent;

@@ -213,7 +213,7 @@ public class ExpressionTypeResolver extends GJNoArguDepthFirst<Type> {
         if (c.variables.containsKey(var))
             return c.variables.get(var);
         Class parent = c.parent;
-        while (parent != null) {
+        while (parent != null && !parent.isMain) {
             if (parent.variables.containsKey(var))
                 return parent.variables.get(var);
             parent = parent.parent;

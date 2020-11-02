@@ -56,16 +56,16 @@ public class ParentMethodArgsChecker extends GJVoidDepthFirst<Class> {
 
         Class currentClass = c.parent;
         while (currentClass != null) {
-            if (c.parent.methods.containsKey(methodName)) {
-                Method parentMethod = c.parent.methods.get(methodName);
+
+            if (currentClass.methods.containsKey(methodName)) {
+                Method parentMethod = currentClass.methods.get(methodName);
                 boolean rtChecked = parentMethod.returnType.equals(returnType);
                 boolean argsChecked = parentMethod.arguments.toString().equals(arguments.toString());
+
                 if (!rtChecked || !argsChecked)
                     throw new NoOverloadingError(methodName, c.name);
-                return;
-            } else {
-                currentClass = currentClass.parent;
             }
+            currentClass = currentClass.parent;
         }
     }
 

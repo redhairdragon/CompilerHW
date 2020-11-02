@@ -40,6 +40,8 @@ public class Typechecker {
         classDefinitionVisitor.getClasses().forEach(x -> {
             classes.put(x, new Class(x));
         });
+        classes.get(classDefinitionVisitor.main).isMain = true;
+
         classes.keySet().forEach(cn -> {
             Class c = classes.get(cn);
             if (childToParent.containsKey(c.getName()))

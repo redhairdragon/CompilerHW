@@ -11,6 +11,7 @@ import cs132.minijava.syntaxtree.MethodDeclaration;
 import cs132.minijava.syntaxtree.Node;
 import cs132.minijava.visitor.*;
 import Models.Class;
+import Models.Type;
 
 //Load method args and check parent method type
 public class ClassMethodDefinitionVisitor extends GJVoidDepthFirst<Class> {
@@ -30,7 +31,11 @@ public class ClassMethodDefinitionVisitor extends GJVoidDepthFirst<Class> {
     public void visit(MainClass n, Class c) {
         String className = Helpers.classname(n);
         Helpers.debugPrint("Loading Main Methods for Main Class: " + className);
-        classes.get(className).addMethod(null, "main", null, null);
+        HashMap<String, Type> args = new HashMap<>();
+        HashMap<Integer, String> argorder = new HashMap<>();
+        args.put("main", null);
+        argorder.put(0, "main");
+        classes.get(className).addMethod(null, "main", args, argorder);
     }
 
     @Override

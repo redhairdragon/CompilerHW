@@ -13,6 +13,7 @@ public class ClassDefinitionVisitor extends DepthFirstVisitor {
     HashSet<String> parents;
     HashMap<String, String> c2p; // parent to children relation
     boolean hasMain = false;
+    String main;
 
     public ClassDefinitionVisitor() {
         classes = new HashSet<>();
@@ -37,7 +38,9 @@ public class ClassDefinitionVisitor extends DepthFirstVisitor {
         if (classes.contains(className))
             throw new ExistedClassDefinitionError(className);
         classes.add(className);
+        this.main = className;
         hasMain = true;
+
     }
 
     @Override
