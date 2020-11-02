@@ -15,6 +15,7 @@ public class Typecheck {
             Typechecker tc = new Typechecker(root);
             tc.execute();
         } catch (ParseException e) {
+            Helpers.debugPrint(e);
             System.out.println("Parse Failed.");
             return;
         } catch (Error e) {

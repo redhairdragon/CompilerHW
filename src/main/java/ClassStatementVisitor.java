@@ -8,6 +8,7 @@ import Models.Method;
 import Models.Type;
 import cs132.minijava.syntaxtree.ClassDeclaration;
 import cs132.minijava.syntaxtree.ClassExtendsDeclaration;
+import cs132.minijava.syntaxtree.MainClass;
 import cs132.minijava.syntaxtree.MethodDeclaration;
 import cs132.minijava.syntaxtree.Node;
 import cs132.minijava.visitor.*;
@@ -21,6 +22,19 @@ public class ClassStatementVisitor extends GJVoidDepthFirst<Models.Class> {
 
     public void execute(Node root) {
         root.accept(this, null);
+    }
+
+    @Override
+    public void visit(MainClass n, Class c) {
+        String className = Helpers.classname(n);
+        Helpers.debugPrint("Checking Statements for Main Class: " + className);
+        c = classes.get(className);
+        Vector<Node> statements = Helpers.statements(n);
+
+        StatementChecker sc = new StatementChecker(c, c.methods.get("main"), classes);
+        for (Node stm : statements) {
+            sc.check(stm);
+        }
     }
 
     @Override
@@ -60,7 +74,7 @@ public class ClassStatementVisitor extends GJVoidDepthFirst<Models.Class> {
         ExpressionTypeResolver etr = new ExpressionTypeResolver(c, m, classes);
         Type returnType = m.returnType;
         Type actualReturnType = etr.resolve(n.f10);
-        if (!Helpers.isSubType(returnType, actualReturnType, classes))
+        if (!Helpers.isSubType(actualReturnType, returnType, classes))
             throw new ReturnTypeNotMatchError(m.name, c.name);
 
     }

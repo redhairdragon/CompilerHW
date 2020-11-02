@@ -57,7 +57,7 @@ public class StatementChecker extends DepthFirstVisitor {
         if (leftType == null)
             throw new VariableNotFoundError(n.f0.f0.tokenImage, method.name, c.name);
         Type rightType = etr.resolve(n.f2);
-        if (!Helpers.isSubType(leftType, rightType, classes))
+        if (!Helpers.isSubType(rightType, leftType, classes))
             throw new AssignmentTypeNotMatchingError(leftType.getName(), rightType.getName());
     }
 

@@ -1,5 +1,6 @@
 import cs132.minijava.syntaxtree.ClassDeclaration;
 import cs132.minijava.syntaxtree.ClassExtendsDeclaration;
+import cs132.minijava.syntaxtree.MainClass;
 import cs132.minijava.syntaxtree.MethodDeclaration;
 import cs132.minijava.syntaxtree.Node;
 import cs132.minijava.visitor.*;
@@ -20,6 +21,18 @@ public class ClassMethodVarVisitor extends GJVoidDepthFirst<Class> {
 
     public void execute(Node root) {
         root.accept(this, null);
+    }
+
+    @Override
+    public void visit(MainClass n, Class c) {
+        String className = Helpers.classname(n);
+        Method m = classes.get(className).methods.get("main");
+        Vector<Node> vd = Helpers.varDeclarations(n);
+        MethodVarChecker mvc = new MethodVarChecker(m, classes);
+
+        for (Node var : vd) {
+            var.accept(mvc);
+        }
     }
 
     @Override

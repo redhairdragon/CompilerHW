@@ -6,6 +6,7 @@ import Errors.UndefinedTypeError;
 import Helpers.*;
 import cs132.minijava.syntaxtree.ClassDeclaration;
 import cs132.minijava.syntaxtree.ClassExtendsDeclaration;
+import cs132.minijava.syntaxtree.MainClass;
 import cs132.minijava.syntaxtree.MethodDeclaration;
 import cs132.minijava.syntaxtree.Node;
 import cs132.minijava.visitor.*;
@@ -23,6 +24,13 @@ public class ClassMethodDefinitionVisitor extends GJVoidDepthFirst<Class> {
         root.accept(this, null);
         ParentMethodArgsChecker pmc = new ParentMethodArgsChecker(classes);
         pmc.check(root);
+    }
+
+    @Override
+    public void visit(MainClass n, Class c) {
+        String className = Helpers.classname(n);
+        Helpers.debugPrint("Loading Main Methods for Main Class: " + className);
+        classes.get(className).addMethod(null, "main", null, null);
     }
 
     @Override
